@@ -2,7 +2,6 @@
 
 const { execSync } = require('child_process');
 const path = require('path');
-const packageJson = require('../package.json');
 const fs = require('fs');
 
 if (process.argv.length < 3) {
@@ -34,6 +33,18 @@ async function main() {
       execSync(`git clone --depth 1 ${git_repo} ${projectPath}`);
 
       process.chdir(projectPath);
+
+      fs.readFile('./package.json', 'utf8', (err, data) => {
+          if (err) {
+              return console.log(err);
+          }
+          let firstChange = data.replace(/"name": "express-boilerplate-api"/g, `"name": "${projectName}"`);
+          let result = firstChange.replace(/"version": "0.0.4"/g, `"version": "0.0.1"`);
+
+          fs.writeFile('./package.json', result, 'utf8', (err) => {
+              if (err) return console.log(err);
+          })
+      })
 
       console.log('Installing dependencies...');
       execSync('npm install');
