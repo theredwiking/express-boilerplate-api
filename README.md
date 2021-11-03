@@ -19,7 +19,7 @@ Code structur is:
 
 To start in developer mode type:
 ```bash
-npm dev
+npm test
 ```
 This is based on nodemon and will reload when a file is saved
 
