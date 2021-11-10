@@ -52,7 +52,7 @@ async function main() {
 
       console.log('Removing useless files');
       execSync('npx rimraf ./.git');
-      fs.unlinkSync('./components/.gitkeep');
+      fs.unlinkSync('./controllers/.gitkeep');
       fs.unlinkSync('./routes/.gitkeep');
       fs.rmdirSync(path.join(projectPath, 'bin'), { recursive: true});
 

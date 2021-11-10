@@ -11,7 +11,7 @@ This will create a project folder called express-api.
 
 Code structur is:
 * express-api
-	* components
+	* controllers
 	* routes
 	* mysql.js
 	* server.js
@@ -27,7 +27,7 @@ This is based on nodemon and will reload when a file is saved
 A routes file shout look like this:
 ```js
 const express = require('express');
-const example = require('../components/ecample');
+const example = require('../controllers/example');
 
 const router = express.Router();
 
@@ -42,7 +42,7 @@ router.get('/get', (req, res) => {
 module.exports = router;
 ```
 
-## Components
+## Controllers
 A components file shout look like this:
 ```js
 const db = require('../mysql');
