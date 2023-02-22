@@ -19,10 +19,10 @@ const git_repo = 'https://github.com/theredwiking/express-boilerplate-api';
 try {
   fs.mkdirSync(projectPath);
 } catch (err) {
-  if (err.code === 'EEXIST') {
+  if (err.code === 'EXIST') {
     console.log(`The file ${projectName} already exist in the current directory, please give it another name.`);
   } else {
-    console.log(error);
+    console.log(err);
   }
   process.exit(1);
 }
@@ -39,7 +39,7 @@ async function main() {
               return console.log(err);
           }
           let firstChange = data.replace(/"name": "express-boilerplate-api"/g, `"name": "${projectName}"`);
-          let result = firstChange.replace(/"version": "0.0.4"/g, `"version": "0.0.1"`);
+          let result = firstChange.replace(/"version": "0.0.6"/g, `"version": "0.0.1"`);
 
           fs.writeFile('./package.json', result, 'utf8', (err) => {
               if (err) return console.log(err);
