@@ -19,7 +19,7 @@ Code structur is:
 
 To start in developer mode type:
 ```bash
-npm test
+npm run dev
 ```
 This is based on nodemon and will reload when a file is saved
 
@@ -50,13 +50,15 @@ const db = require('../mysql');
 const Example = {
     post: function(req, res){
 		let body = req.body;
-        db.query('INSERT INTO test(name, email) VALUES (?, ?)', [
-			body.name,
-			body.email
-		], (err, result) => {
-            if (err) res.status(500).send({Error: err});
-            res.status(200).send(result);
-        });
+        try {
+            await db.query('INSERT INTO test(name, email) VALUES (?, ?)', [
+                body.name,
+                body.email
+            ]);
+            res.status(201).send({Message: 'Successfully created new user'});
+        } catch (e) {
+            res.status(500).send({Error: 'A error occurred'});
+        }
     },
     get: function(req, res){
         db.query('SELECT * FROM test', (err, result) => {

@@ -8,7 +8,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server",
-    "test": "nodemon server"
+    "dev": "nodemon server"
   },
   "keywords": [
     "Express",
