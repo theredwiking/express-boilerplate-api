@@ -61,10 +61,12 @@ const Example = {
         }
     },
     get: function(req, res){
-        db.query('SELECT * FROM test', (err, result) => {
-            if (err) res.status(500).send({Error: err});
-            res.status(200).send(result);
-        });
+        try {
+            let [rows, fields] = await db.query('SELECT * FROM test');
+            res.status(200).send(rows);
+        } catch (e) {
+            res.status(500).send({Error: 'A error occurred'});
+        }
     }
 }
 
